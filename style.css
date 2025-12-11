@@ -1,0 +1,377 @@
+
+
+/*SECTOR GEENRAL DE LA PAGINA*/
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+.contenedor-principal{
+    max-width: 800px;
+    /* Define el ancho máximo que puede ocupar el contenido */
+    margin: 0 auto;
+    /* Centra el contenedor horizontalmente en la página (0 arriba/abajo, auto izquierda/derecha) */
+    padding: 30px;
+    /* Espacio interno alrededor del contenido */
+    background-color: white; /* Color de fondo inicial  */
+}
+
+
+.contenedor-principal{
+    max-width: 800px;
+    /* Define el ancho máximo que puede ocupar el contenido */
+    margin: 0 auto;
+    /* Centra el contenedor horizontalmente en la página */
+    padding: 30px;
+    /* Espacio interno alrededor del contenido */
+    /* Reemplazo: antes era background-color: white; */
+    background-color: var(--fondo-contenedor); /* Usa la variable de tema para el fondo de la caja */
+}
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+
+
+/*SECTOR DE BODY DEL HTML*/
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+body{
+
+    /* Definimos las variables de color (Propiedades personalizadas) */
+
+    --fondo-principal: #EAF4F4; 
+    /* Menta Suave */
+    --fondo-contenedor: white;
+     /* Fondo de la caja central */
+    --color-texto: #3C5B6F;    
+    /* Azul Marino Oscuro */
+    --fondo-caja: #D8E2E8;
+    /* Azul Pálido para cajas secundarias (Habilidades) */
+
+
+
+    /* APLICAMOS LAS PROPIEDADES GLOBALES AL BODY*/
+    
+    background-color: var(--fondo-principal);
+    /* Establece el color de fondo principal para toda la página */
+    color: var(--color-texto);
+    /* Define el color de texto por defecto para todo el contenido */
+    font-family: 'Montserrat', sans-serif;
+    /* Aplica la fuente 'Montserrat' a todo el texto de la página */
+    
+}
+
+.titulo-dominio {
+  /* Establece un espacio de 25 píxeles por debajo del título */
+  margin-bottom: 70px; 
+}
+
+/*-------------------------------------------------------------------------*/
+
+
+ /*SECTOR DE PERFIL*/
+
+
+/*-------------------------------------------------------------------------*/
+/* Contenedor principal: Ya lo tienes, pero confirmamos que NO tenga width ni flex-wrap */
+.cabeceraPerfil {
+    display: flex;
+    align-items: flex-start; /* Para que el texto empiece arriba */
+    gap: 30px;
+}
+
+/* El texto usa 3/4 partes del espacio */
+.texto-perfil {
+    flex: 3; /* Shorthand para flex-grow: 3, flex-shrink: 1, flex-basis: 0 */
+    /* Lo esencial es que ahora compite por espacio con un peso de 3 */
+    flex-shrink: 0;   /* ¡CRUCIAL! Le prohibimos encogerse */
+}
+
+/* 1. Contenedor padre: Define el tamaño fijo y la forma */
+.FotoPerfil {
+    width: 200px;
+    height: 200px;
+    background-color: lightgray; /* Opcional: para ver el espacio si la foto no carga */
+    border-radius: 50%; /* La forma circular */
+    /* Aquí van también las reglas de Flexbox que ya tenías: flex: 1; min-width: 150px; */
+}
+
+/* 2. Imagen interna: La hace encajar perfectamente en ese círculo */
+.FotoPerfil img {
+    width: 100%;        /* Ocupa el 100% del ancho del contenedor */
+    height: 100%;       /* Ocupa el 100% del alto del contenedor */
+    object-fit: cover;  /* Mantiene la proporción y cubre el espacio, evitando que se estire. */
+    border-radius: 50%; /* Asegura que la imagen sea circular, igual que el contenedor. */
+}
+
+/*-------------------------------------------------------------------------*/
+
+
+ /*SECTOR DE CONTACTOS*/
+
+
+/*-------------------------------------------------------------------------*/
+.Redes {
+    display: flex; 
+    /* Activa Flexbox para organizar los enlaces */
+    justify-content: center; 
+    /* Centra los enlaces horizontalmente */
+    flex-direction: column; 
+    /* Apila todos los enlaces verticalmente (Phone, WhatsApp, Insta...) */
+    
+    padding: 10px 0; 
+    /* Espacio vertical para el bloque de redes */
+}
+.Redes i{
+    display: flex; 
+    padding: 10px 0;
+     /* Espacio arriba y abajo para separar los íconos */
+}
+.Redes a {
+    /* PROPIEDADES AÑADIDAS PARA ALINEAR EL ÍCONO Y EL TEXTO: */
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+
+    /* Usamos 'color-texto' para que cambie en modo oscuro/claro */
+    color: var(--color-texto); 
+    font-size: 24px;
+    gap: 15px; 
+    /* Este GAP ahora controla la separación entre el ícono y el texto */
+    
+    transition: color 0.3s ease; 
+    text-decoration: none; 
+}
+/* Efecto al pasar el ratón */
+.Redes a:hover {
+    color: #3C5B6F; 
+    /* Cambia el color del enlace al pasar el ratón */
+}
+
+/* Regla específica para el teléfono (que hicimos en el paso anterior) */
+.Redes .enlace-telefono {
+    display: flex; /* Activa Flexbox en este enlace */
+    flex-direction: row; /* Fuerza a que el ícono y el número vayan en fila (horizontal) */
+    gap: 10px; /* Separación entre ícono y número */
+    align-items: center; /* Alinea el ícono y el número verticalmente al centro */
+}
+
+/*-------------------------------------------------------------------------*/
+
+/*SECTOR DE HABILIDADES*/
+
+/*-------------------------------------------------------------------------*/
+
+.habilidades{
+    background-color: #e4e1e1;
+    /*Color de fondo de la caja. */
+    padding: 20px;
+    /*Espacio interno entre el borde y el contenido (los lenguajes). */
+    border: 1px solid #333;
+    /*Línea alrededor de la caja. */
+    display: flex;
+    /*Convierte al contenedor en un contenedor flexible. Esto hace 
+    que los elementos internos  intenten alinearse horizontalmente. */
+    flex-wrap: wrap;
+    /*Permite que los elementos internos salten a una nueva
+    línea si no caben en el ancho de la pantalla. */
+}
+.habilidades li{
+    --fondo-lenguajes: #D8E2E8;
+    background-color: var(--fondo-lenguajes);
+    /* Fondo para que se vea como una tarjeta separada */
+    list-style-type: none; 
+    /* Quita las viñetas por defecto */
+    padding: 10px 15px; 
+    /* Espacio interno entre el texto y el borde de la tarjeta */
+    margin: 10px; 
+    /* Espacio EXTERNO para separar esta tarjeta de la siguiente */
+    border-radius: 5px;
+    /* Redondeo de las esquinas */
+}
+.habilidades ul {
+    display: flex; 
+    /* Hacemos que los LI se organicen horizontalmente */
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    /* Eliminamos estilos que intervienen*/
+}
+
+.habilidades{
+    /* REVISIÓN PARA VARIABLES: Sobreescribe el background-color */
+    /* Reemplazo: antes era background-color: #e4e1e1; */
+    background-color: var(--fondo-caja); 
+    /*Color de fondo de la caja, usando la variable de tema. */
+    padding: 20px;
+}
+
+
+.habilidades li i{
+    font-size: 34px;
+}
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+
+/*SECCION DE PROYECTOS*/
+
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+.proyectos ul{
+    flex-direction: column;
+    /* Fuerza a los ítems de la lista de proyectos a apilarse verticalmente */
+    list-style-type: disc; 
+    /* Restaura las viñetas por defecto (puntos) para los proyectos */
+    margin-top: 15px;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+
+/*TIPOGRAFIAS Y TITULOS*/
+
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+h1 {
+    font-size: 1.5em; /* Reducimos el tamaño para que quepa en el 75% del ancho */
+    margin-bottom: 70px;
+}
+
+h2{
+    font-weight: 700;
+    /* Hace que el texto sea negrita (valor 700) */
+    margin-top: 40px;
+    /* Espacio grande arriba del título para separar secciones */
+    margin-bottom: 10px;
+    /* Espacio debajo del título */
+}
+
+h3{
+    font-weight: 700;
+    /* Agrega negrita a los subtítulos */
+    margin-top: 25px;
+    /* Genera un espacio arriba para dividirlo de la sección anterior */
+    margin-bottom: 5px;
+    /* Agrega un espacio pequeño para dividirlo de la descripción siguiente */
+}
+
+p{
+    margin-bottom: 20px;
+    /* Espacio debajo de los párrafos para separarlos */
+}
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/*LISTAS GLOBALES Y SEPARADORES*/
+
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+ul{
+    display: flex;
+    /* Convierte la lista en un contenedor flexible para organizar los items */
+    list-style-type: none;
+    /* Elimina las viñetas por defecto de las listas */
+    padding: 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+    /* Agrega una línea gris claro que divide las secciones */
+    padding-bottom: 15px;
+    /* Agrega un espacio para que la línea no se pegue al texto superior */
+}
+
+ul li{
+    margin-right: 20px;
+    /* Añade un espacio a la derecha de cada atributo o item de la lista */
+}
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+
+
+/*BOTONES Y UTILIDAD*/
+
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+#btnAlternar{
+    background-color: #333; 
+    /* Fondo oscuro para el botón de alternar proyectos */
+    color: white; 
+    /* Texto blanco para contraste */
+    padding: 10px 15px; 
+    /* Espacio interno */
+    border: none; 
+    /* Elimina el borde por defecto del navegador */
+    border-radius: 5px; 
+    /* Bordes ligeramente redondeados */
+    cursor: pointer; 
+    /* Cambia el cursor para indicar que es clickeable */
+    margin-top: 15px; 
+    /* Espacio superior para separarlo de la sección anterior */
+    transition: background-color 0.3s ease; 
+    /* Prepara una transición suave para el color de fondo */
+}
+
+.ocultar {
+    display: none; 
+    /* Clase de utilidad: Oculta el elemento y no ocupa espacio en el layout */
+}
+
+#btnTema{
+    background-color: #3C5B6F; /* Azul Marino Oscuro */
+    color: white; 
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* Cambia el cursor para indicar que es clickeable */
+    transition: background-color 0.3s ease;
+    /* Transición suave para el cambio de color (e.g., al hacer hover) */
+
+    /* fijar posición en la ventana */
+    position: fixed;
+     /* Mantiene el botón fijo aunque el usuario haga scroll */
+    top: 20px; 
+    /* Distancia desde el borde superior de la ventana */
+    right: 20px;
+     /* Distancia desde el borde derecho de la ventana */
+    z-index: 100;
+     /* Asegura que el botón se muestre por encima de otros elementos */
+}
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+
+
+
+/*TEMA OSCURO*/
+
+
+/*-----------------------------------------------------------------------------------------------------------------*/
+.tema-oscuro {
+    /* Redefinimos las variables para el modo oscuro */
+    --fondo-principal: #21252c; 
+     /* Fondo de la página (Negro) */
+    --fondo-contenedor: #243651;
+     /* Caja principal gris oscuro */
+    --color-texto: white; 
+    /* Texto blanco para contraste */
+    --fondo-caja: #3D5270; 
+    /* Fondo de cajas secundarias (Habilidades) */
+    --fondo-lenguajes: #21252c;
+     /* Fondo para las etiquetas de habilidades */
+}
+
+.tema-oscuro .contenedor-principal {
+    /* Agrega una sombra sutil para el modo oscuro */
+    box-shadow: 0 0 10px rgba(180, 200, 220, 0.1); 
+}
+
+.tema-oscuro .habilidades li {
+    background-color: var(--fondo-lenguajes); 
+    /* Aplica el fondo de habilidad del tema oscuro */
+    color: var(--color-texto);
+     /* Usa el color de texto del tema oscuro */
+}
+/*-----------------------------------------------------------------------------------------------------------------*/
