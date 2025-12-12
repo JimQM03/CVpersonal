@@ -32,12 +32,11 @@ const habilidadesLista = [
     { nombre: "Git",
         claseIcono: "fab fa-git"         }
 ];
-const listaHabilidadesHTML = document.querySelector('.habilidades ul');
 
 //Elemento de captura del boton de traducción
 const botonIdioma = document.getElementById('btnidioma');
-const textoEspañol = document.getElementById('texto-esp');
-const textoIngles = document.getElementById('texto-ing');
+const IdiomaEsp = document.getElementById('VerEspañol');
+const IdiomaIng = document.getElementById('VerIngles');
 
 //=====================================================================================================
 
@@ -71,24 +70,23 @@ function alternarProyectos() {
  * con su respectivo ícono de Font Awesome, usando el Array de Objetos.
  */
 function insertarHabilidades() {
-    // Recorremos el nuevo Array de OBJETOS (donde 'habilidad' ahora es {nombre: "...", claseIcono: "..."})
-    habilidadesLista.forEach(function(habilidad) { 
-                     //FOREACH es un bucle y HABILIDAD va guardando de a un solo objeto
-        // 1. Crear el <li> (la tarjeta de habilidad)
-        const itemLista = document.createElement('li'); 
-        
-        // 2. Crear el <i> (el elemento que contendrá el ícono)
-        const icono = document.createElement('i');
-        
-        // 3. Asignar la clase de Font Awesome al <i>
-        // Accedemos a la propiedad 'claseIcono' del objeto para obtener las clases de Font Awesome.
-        icono.className = habilidad.claseIcono; // Ejemplo: "fa-brands fa-js"
-        
-        // 4. Insertar el <i> (el ícono) dentro del <li> (la tarjeta)
-        itemLista.appendChild(icono);
-        
-        // 5. Adjuntar el <li> (con el ícono dentro) al <ul> principal en el HTML
-        listaHabilidadesHTML.appendChild(itemLista);
+    // Obtener TODAS las listas <ul> dentro de cualquier elemento con clase .habilidades
+    // Esto encontrará la <ul> en VerEspañol y la <ul> en VerIngles.
+    const todasLasListas = document.querySelectorAll('.habilidades ul'); 
+    // Iterar sobre cada lista encontrada (Español e Inglés)
+    todasLasListas.forEach(lista => {
+        // Recorremos el Array de OBJETOS de habilidades
+        habilidadesLista.forEach(function(habilidad) { 
+            // Crear los elementos (<li> y <i>)
+            const itemLista = document.createElement('li'); 
+            const icono = document.createElement('i');
+            //  Asignar la clase de Font Awesome y el nombre
+            icono.className = habilidad.claseIcono; // Ejemplo: "fa-brands fa-js"
+            // Insertar el ícono dentro del <li>
+            itemLista.appendChild(icono);
+            //Adjuntar el <li> a la LISTA ACTUAL (tanto la de español como la de inglés)
+            lista.appendChild(itemLista); 
+        });
     });
 }
 
@@ -96,20 +94,16 @@ function insertarHabilidades() {
 //FUNCION DE ALTERNAR IDIOMA
 
 function alternarIdioma() {
-    //alternar visibilidad de textos
-    textoEspañol.classList.toggle('ocultar');
-    textoIngles.classList.toggle('ocultar');
-    
-      //CONDICIONAL PARA CAMBIAR DE IDIOMA EL BOTON 
-      if (!textoEspañol.classList.contains('ocultar')) {
-        botonIdioma.textContent = "Switch to English";
-       // PONER el texto del botón a "Switch to English"
-       } else {
-       
-        botonIdioma.textContent = "Cambiar a Español";
-        // PONER el texto del botón a "Cambiar a Español"
-      }//FIN CONDICIONAL 
+    // Estas líneas deberían ser suficientes:
+    IdiomaEsp.classList.toggle('ocultar'); 
+    IdiomaIng.classList.toggle('ocultar'); 
 
+    // Lógica para cambiar el texto del botón
+    if (!IdiomaEsp.classList.contains('ocultar')) { 
+        botonIdioma.textContent = "Switch to English";
+    } else {
+        botonIdioma.textContent = "Cambiar a Español";
+    }
 }
 
 //=====================================================================================================
