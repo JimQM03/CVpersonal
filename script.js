@@ -34,6 +34,11 @@ const habilidadesLista = [
 ];
 const listaHabilidadesHTML = document.querySelector('.habilidades ul');
 
+//Elemento de captura del boton de traducción
+const botonIdioma = document.getElementById('btnidioma');
+const textoEspañol = document.getElementById('texto-esp');
+const textoIngles = document.getElementById('texto-ing');
+
 //=====================================================================================================
 
 
@@ -87,6 +92,26 @@ function insertarHabilidades() {
     });
 }
 
+
+//FUNCION DE ALTERNAR IDIOMA
+
+function alternarIdioma() {
+    //alternar visibilidad de textos
+    textoEspañol.classList.toggle('ocultar');
+    textoIngles.classList.toggle('ocultar');
+    
+      //CONDICIONAL PARA CAMBIAR DE IDIOMA EL BOTON 
+      if (!textoEspañol.classList.contains('ocultar')) {
+        botonIdioma.textContent = "Switch to English";
+       // PONER el texto del botón a "Switch to English"
+       } else {
+       
+        botonIdioma.textContent = "Cambiar a Español";
+        // PONER el texto del botón a "Cambiar a Español"
+      }//FIN CONDICIONAL 
+
+}
+
 //=====================================================================================================
 
 
@@ -103,5 +128,16 @@ botonTema.addEventListener('click', alternarTema);
 
 // Asigna la función de alternar proyectos al botón
 botonAlternar.addEventListener('click', alternarProyectos);
+
+//asignamos funcion de cambiar idioma
+botonIdioma.addEventListener('click', alternarIdioma);
+
+//=====================================================================================================
+
+
+
+// 4. CONDICIONALES
+
+
 
 //=====================================================================================================
