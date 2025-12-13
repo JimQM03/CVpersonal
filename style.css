@@ -333,7 +333,7 @@ ul li{
     /* fijar posición en la ventana */
     position: fixed;
      /* Mantiene el botón fijo aunque el usuario haga scroll */
-    top: 20px; 
+    bottom: 20px; 
     /* Distancia desde el borde superior de la ventana */
     right: 20px;
      /* Distancia desde el borde derecho de la ventana */
@@ -354,7 +354,7 @@ ul li{
      /* fijar posición en la ventana */
     position: fixed;
      /* Mantiene el botón fijo aunque el usuario haga scroll */
-    top: 60px; 
+    bottom: 60px; 
     /* Distancia desde el borde superior de la ventana */
     right: 20px;
      /* Distancia desde el borde derecho de la ventana */
