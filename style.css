@@ -225,6 +225,38 @@ body{
     margin-top: 15px;
 }
 
+#primerProyecto {
+    background-color: var(--fondo-contenedor); 
+    /* Usamos la variable que ya tienes */
+    border: 1px solid #ccc; 
+    /* Un borde fino para definir la ventana */
+    padding: 20px; 
+    /* Espacio interno para que el texto no toque los bordes */
+    border-radius: 10px; 
+    /* Esquinas redondeadas para un look moderno */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    /* La sombra mágica que da profundidad */
+    margin-bottom: 20px;
+     /* Separación por si añades más proyectos */
+}
+
+#primerProyecto h3 {
+    margin-top: 0; /* Quita el espacio extra de arriba */
+    color: var(--color-texto); /* Usa tu color azul marino */
+    font-size: 1.2em;
+}
+
+#primerProyecto a {
+    display: inline-block; /* Permite darle margen y padding */
+    margin-top: 10px;
+    color: #3C5B6F; 
+    font-weight: bold;
+    text-decoration: none; /* Quita la línea de abajo */
+}
+
+#primerProyecto a:hover {
+    text-decoration: underline; /* La línea solo aparece al pasar el mouse */
+}
 /*-----------------------------------------------------------------------------------------------------------------*/
 
 
