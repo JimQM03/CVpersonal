@@ -257,6 +257,18 @@ body{
 #primerProyecto a:hover {
     text-decoration: underline; /* La línea solo aparece al pasar el mouse */
 }
+
+#primerProyecto ul {
+    display: flex;
+    flex-direction: column; 
+    /* Esto apila los elementos uno debajo del otro */
+    list-style-type: disc; 
+     /* Esto devuelve los puntitos (viñetas) tradicionales  */
+    padding-left: 20px;    
+     /* Da un pequeño espacio a la izquierda para las viñetas */
+    border-bottom: none;  
+      /* Quita la línea gris que pusiste en las listas globales */
+}
 /*-----------------------------------------------------------------------------------------------------------------*/
 
 
@@ -327,24 +339,6 @@ ul li{
 
 
 /*-----------------------------------------------------------------------------------------------------------------*/
-#btnAlternar{
-    background-color: #333; 
-    /* Fondo oscuro para el botón de alternar proyectos */
-    color: white; 
-    /* Texto blanco para contraste */
-    padding: 10px 15px; 
-    /* Espacio interno */
-    border: none; 
-    /* Elimina el borde por defecto del navegador */
-    border-radius: 5px; 
-    /* Bordes ligeramente redondeados */
-    cursor: pointer; 
-    /* Cambia el cursor para indicar que es clickeable */
-    margin-top: 15px; 
-    /* Espacio superior para separarlo de la sección anterior */
-    transition: background-color 0.3s ease; 
-    /* Prepara una transición suave para el color de fondo */
-}
 
 .ocultar {
     display: none; 

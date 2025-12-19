@@ -3,8 +3,6 @@
 
 //=====================================================================================================
 
-// Elementos necesarios para ocultar/mostrar proyectos
-const botonAlternar = document.getElementById('btnAlternar');
 const seccionProyectos = document.getElementById('seccionProyectos');
 
 // Elementos necesarios para el tema oscuro/claro
@@ -53,16 +51,6 @@ function alternarTema() {
     // Usamos .classList.toggle para agregar o quitar la clase 'tema-oscuro'
     cuerpoPagina.classList.toggle('tema-oscuro');
     console.log('Se presionó el botón de tema y se alternó la clase "tema-oscuro".');
-}
-
-/**
- * Función que oculta o muestra la sección de proyectos.
- * Alterna la clase 'ocultar' en la sección de proyectos.
- */
-function alternarProyectos() {
-    // Usamos .classList.toggle para agregar o quitar la clase 'ocultar'
-    seccionProyectos.classList.toggle('ocultar');
-    console.log('Se presionó el botón de alternar proyectos.');
 }
 
 /**
@@ -119,9 +107,6 @@ insertarHabilidades();
 
 // Asigna la función de alternar tema al botón
 botonTema.addEventListener('click', alternarTema);
-
-// Asigna la función de alternar proyectos al botón
-botonAlternar.addEventListener('click', alternarProyectos);
 
 //asignamos funcion de cambiar idioma
 botonIdioma.addEventListener('click', alternarIdioma);
