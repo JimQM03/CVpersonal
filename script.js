@@ -171,7 +171,7 @@ botonTema.addEventListener('click', alternarTema);
 //asignamos funcion de cambiar idioma
 botonIdioma.addEventListener('click', alternarIdioma);
 
-//=====================================================================================================
+//===================================================================================================
 
 
 
@@ -179,7 +179,7 @@ botonIdioma.addEventListener('click', alternarIdioma);
 
 
 
-//=====================================================================================================
+//==================================================================================================
 
 function insertarProyectos (){
     const contenedorEsp = document.getElementById('seccionProyectos');
