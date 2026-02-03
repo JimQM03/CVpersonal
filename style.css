@@ -140,12 +140,12 @@ body{
     
     transition: color 0.3s ease; 
     text-decoration: none; 
+
+    transition: color 0.3s ease, text-shadow 0.3s ease; 
+    text-decoration: none;
+    color: var(--color-texto); /* Color inicial basado en el tema */
 }
 /* Efecto al pasar el ratón */
-.Redes a:hover {
-    color: #3C5B6F; 
-    /* Cambia el color del enlace al pasar el ratón */
-}
 
 /* Regla específica para el teléfono (que hicimos en el paso anterior) */
 .Redes .enlace-telefono {
@@ -153,6 +153,43 @@ body{
     flex-direction: row; /* Fuerza a que el ícono y el número vayan en fila (horizontal) */
     gap: 10px; /* Separación entre ícono y número */
     align-items: center; /* Alinea el ícono y el número verticalmente al centro */
+}
+
+/* Colores específicos al pasar el mouse (Hover) */
+
+/* Teléfono - Un tono verde azulado oscuro */
+.Redes a[title="Llamar"]:hover {
+    color: #2c3e50;
+    text-shadow: 0px 0px 8px rgba(44, 62, 80, 0.2);
+}
+
+/* WhatsApp - El verde oficial */
+.Redes a[title="WhatsApp"]:hover {
+    color: #25D366;
+}
+
+/* Correo - Un rojo/naranja profesional */
+.Redes a[title="Correo Electrónico"]:hover {
+    color: #EA4335;
+}
+
+/* Instagram - Un tono magenta/morado */
+.Redes a[title="Instagram"]:hover {
+    color: #E1306C;
+}
+
+/* Facebook - El azul oficial */
+.Redes a[title="Facebook"]:hover {
+    color: #1877F2;
+}
+
+.Redes a i {
+    transition: transform 0.3s ease;
+}
+
+.Redes a:hover i {
+    /* El ícono se hace apenas un 10% más grande sin mover el texto */
+    transform: scale(1.1); 
 }
 
 /*-------------------------------------------------------------------------*/
@@ -187,6 +224,14 @@ body{
     /* Espacio EXTERNO para separar esta tarjeta de la siguiente */
     border-radius: 5px;
     /* Redondeo de las esquinas */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Movimiento suave */
+    cursor: default;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--fondo-lenguajes);
+    border: 1px solid transparent; /* Para evitar saltos al aparecer el borde */
 }
 .habilidades ul {
     display: flex; 
@@ -208,6 +253,20 @@ body{
 
 .habilidades li i{
     font-size: 34px;
+    transition: color 0.3s ease;
+    font-size: 34px;
+    color: var(--color-texto);
+}
+
+.habilidades li:hover {
+    transform: translateY(-10px) scale(1.1); /* Sobresale hacia arriba */
+    background-color: var(--fondo-contenedor); /* Cambia ligeramente el fondo */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra de elevación */
+    border-color: var(--color-hover); /* El borde toma el color de la tecnología */
+}
+
+.habilidades li:hover i {
+    color: var(--color-hover); /* Usa la variable que definimos en JS */
 }
 /*-----------------------------------------------------------------------------------------------------------------*/
 
@@ -365,6 +424,15 @@ ul li{
      /* Distancia desde el borde derecho de la ventana */
     z-index: 100;
      /* Asegura que el botón se muestre por encima de otros elementos */
+
+     /*añadimos una trancicion*/
+     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    background: linear-gradient(135deg, #3C5B6F 0%, #1a2a33 100%);
 }
 
 #btnidioma{
@@ -386,9 +454,39 @@ ul li{
      /* Distancia desde el borde derecho de la ventana */
     z-index: 100;
      /* Asegura que el botón se muestre por encima de otros elementos */
+     /*añadimos una trancicion*/
+     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
 
 }
 
+/*Obtener cambio en el mouse*/
+
+#btnTema:hover, #btnidioma:hover {
+    transform: translateY(-3px); /* El botón sube ligeramente */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    filter: brightness(1.2); /* Se aclara un poco */
+}
+
+/* Efecto al hacer clic */
+#btnTema:active, #btnidioma:active {
+    transform: translateY(0); /* Vuelve a su posición original */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Hace que el ícono de la paleta gire cuando pasas el mouse */
+#btnTema:hover i {
+    transform: rotate(20deg);
+}
+
+/* Hace que el ícono de idioma crezca */
+#btnidioma:hover i {
+    transform: scale(1.2);
+}
 /*-----------------------------------------------------------------------------------------------------------------*/
 
 
