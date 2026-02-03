@@ -75,28 +75,40 @@ body{
 /* Contenedor principal: Ya lo tienes, pero confirmamos que NO tenga width ni flex-wrap */
 .cabeceraPerfil {
     display: flex;
-    align-items: flex-start; /* Para que el texto empiece arriba */
-    gap: 30px;
-    /* Añadimos un borde inferior para separar del bloque de contactos */
-    border-bottom: 2px solid var(--fondo-caja); 
-    padding-bottom: 40px; /* Espacio para que la línea no pegue al texto */
-    margin-bottom: 30px; /* Espacio antes de que empiecen los contactos */
+    flex-direction: column; /* Apila Foto y Texto uno sobre otro */
+    align-items: center;    /* Centra ambos elementos horizontalmente */
+    text-align: center;     /* Centra los títulos internos */
+    gap: 25px;
+    border-bottom: 2px solid var(--fondo-caja);
+    padding-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 /* El texto usa 3/4 partes del espacio */
-.texto-perfil {
-    flex: 3; /* Shorthand para flex-grow: 3, flex-shrink: 1, flex-basis: 0 */
-    /* Lo esencial es que ahora compite por espacio con un peso de 3 */
-    flex-shrink: 0;   /* ¡CRUCIAL! Le prohibimos encogerse */
-}
-
-/* 1. Contenedor padre: Define el tamaño fijo y la forma */
 .FotoPerfil {
+    order: 1; /* La foto sube al primer lugar */
     width: 200px;
     height: 200px;
-    background-color: lightgray; /* Opcional: para ver el espacio si la foto no carga */
-    border-radius: 50%; /* La forma circular */
-    /* Aquí van también las reglas de Flexbox que ya tenías: flex: 1; min-width: 150px; */
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--color-texto); /* Usa el color de tu tema para el borde */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.texto-perfil {
+    order: 2; /* El texto baja al segundo lugar */
+    flex: none; /* Quitamos el flex: 3 para que no intente estirarse a los lados */
+    width: 100%;
+}
+/* 1. Contenedor padre: Define el tamaño fijo y la forma */
+.FotoPerfil {
+    order: 1; /* La foto sube al primer lugar */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--color-texto); /* Usa el color de tu tema para el borde */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* 2. Imagen interna: La hace encajar perfectamente en ese círculo */
