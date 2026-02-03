@@ -57,6 +57,39 @@ const habilidadesLista = [
     }
 ];
 
+const listaProyectos = [
+    {
+        id: "primerProyecto",
+        imagen: "img/GestionG.png",
+        tituloEsp: "Gestión G - Account Manager",
+        tituloIng: "G Management - Account Manager",
+        descripcionEsp: "Sistema de gestión de cuentas centrado en la seguridad. Implementé flujos de autenticación integrando Neon (PostgreSQL) y despliegue en Render, optimizando el control de versiones con Git/GitHub.",
+        descripcionIng: "Security-focused account management system. I implemented authentication flows integrating Neon (PostgreSQL) and Render deployment, optimizing version control with Git/GitHub.",
+        tools: [
+            { nombre: "GitHub", icono: "fa-brands fa-github", color: "#6e5494" },
+            { nombre: "PostgreSQL", icono: "fa-solid fa-database", color: "#336791" },
+            { nombre: "Render", icono: "fa-solid fa-cloud", color: "#46E3B7" },
+            { nombre: "Git", icono: "fa-brands fa-git-alt", color: "#f05032" }
+        ],
+        link: "#" 
+    },
+    {
+        id: "segundoProyecto",
+        imagen: "img/Ferreteria.png",
+        tituloEsp: "Inventory Web Service - Ferretería",
+        tituloIng: "Hardware Store Inventory Web Service",
+        descripcionEsp: "Servicio web con seguridad avanzada: protección contra inyecciones SQL (Turso/SQLite) y ataques XSS. Implementé cifrado Hashing para credenciales y despliegue en Vercel.",
+        descripcionIng: "Web service with advanced security: protection against SQL injections (Turso/SQLite) and XSS attacks. Implemented Hashing encryption for credentials and Vercel deployment.",
+        tools: [
+            { nombre: "Turso", icono: "fa-solid fa-bolt", color: "#4FFFB0" },
+            { nombre: "Vercel", icono: "fa-solid fa-triangle-exclamation", color: "#000000" },
+            { nombre: "Security", icono: "fa-solid fa-shield-halved", color: "#ff4d4d" },
+            { nombre: "MySQL/SQLite", icono: "fa-solid fa-server", color: "#00758f" }
+        ],
+        link: "#"
+    }
+];
+
 //Elemento de captura del boton de traducción
 const botonIdioma = document.getElementById('btnidioma');
 const IdiomaEsp = document.getElementById('VerEspañol');
@@ -142,8 +175,49 @@ botonIdioma.addEventListener('click', alternarIdioma);
 
 
 
-// 4. CONDICIONALES
+// 4. fUNCIONES DE PROYECTOS
 
 
 
 //=====================================================================================================
+
+function insertarProyectos (){
+    const contenedorEsp = document.getElementById('seccionProyectos');
+    const contenedorIng = document.getElementById('seccionProyectosIng');
+
+    listaProyectos.forEach(proy => {
+        //Crear el html para ambos idiomas
+        const crearCard = (esIngles) => {
+            const div = document.createElement('div');
+            div.className = "proyecto-card";
+            div.innerHTML = `
+                <div class="proyecto-img-container">
+                    <img src="${proy.imagen}" alt="Screenshot ${proy.tituloEsp}" class="proyecto-img">
+                </div>
+                <h3>${esIngles ? proy.tituloIng : proy.tituloEsp}</h3>
+                <p>${esIngles ? proy.descripcionIng : proy.descripcionEsp}</p>
+                <div class="proyecto-tools"></div>
+                <a href="${proy.link}" target="_blank" class="btn-proyecto">
+                    <i class="fa-brands fa-github"></i> ${esIngles ? "View Code" : "Ver Código"}
+                </a>
+            `;
+
+            //insertamos las skills
+            const toolsDiv = div.querySelector('.proyecto-tools');
+            proy.tools.forEach(tool => {
+                const span = document.createElement('span');
+                span.className = "tool-badge";
+                span.style.setProperty('--color-tool', tool.color);
+                span.innerHTML = `<i class="${tool.icono}"></i> ${tool.nombre}`;
+                toolsDiv.appendChild(span);
+            });
+            return div;
+        };
+
+        contenedorEsp.appendChild(crearCard(false));
+        contenedorIng.appendChild(crearCard(true));
+    });
+
+}
+
+insertarProyectos();

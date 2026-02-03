@@ -77,6 +77,10 @@ body{
     display: flex;
     align-items: flex-start; /* Para que el texto empiece arriba */
     gap: 30px;
+    /* Añadimos un borde inferior para separar del bloque de contactos */
+    border-bottom: 2px solid var(--fondo-caja); 
+    padding-bottom: 40px; /* Espacio para que la línea no pegue al texto */
+    margin-bottom: 30px; /* Espacio antes de que empiecen los contactos */
 }
 
 /* El texto usa 3/4 partes del espacio */
@@ -120,6 +124,13 @@ body{
     
     padding: 10px 0; 
     /* Espacio vertical para el bloque de redes */
+    background-color: rgba(216, 226, 232, 0.3); /* Un azul muy suave y transparente */
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea a la izquierda para un look más moderno */
+    gap: 15px;
 }
 .Redes i{
     display: flex; 
@@ -284,50 +295,98 @@ body{
     margin-top: 15px;
 }
 
-#primerProyecto {
-    background-color: var(--fondo-contenedor); 
-    /* Usamos la variable que ya tienes */
-    border: 1px solid #ccc; 
-    /* Un borde fino para definir la ventana */
-    padding: 20px; 
-    /* Espacio interno para que el texto no toque los bordes */
-    border-radius: 10px; 
-    /* Esquinas redondeadas para un look moderno */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-    /* La sombra mágica que da profundidad */
-    margin-bottom: 20px;
-     /* Separación por si añades más proyectos */
-}
-
-#primerProyecto h3 {
-    margin-top: 0; /* Quita el espacio extra de arriba */
-    color: var(--color-texto); /* Usa tu color azul marino */
-    font-size: 1.2em;
-}
-
-#primerProyecto a {
-    display: inline-block; /* Permite darle margen y padding */
-    margin-top: 10px;
-    color: #3C5B6F; 
-    font-weight: bold;
-    text-decoration: none; /* Quita la línea de abajo */
-}
-
-#primerProyecto a:hover {
-    text-decoration: underline; /* La línea solo aparece al pasar el mouse */
-}
-
-#primerProyecto ul {
+/* Contenedor de la tarjeta de proyecto */
+.proyecto-card {
     display: flex;
-    flex-direction: column; 
-    /* Esto apila los elementos uno debajo del otro */
-    list-style-type: disc; 
-     /* Esto devuelve los puntitos (viñetas) tradicionales  */
-    padding-left: 20px;    
-     /* Da un pequeño espacio a la izquierda para las viñetas */
-    border-bottom: none;  
-      /* Quita la línea gris que pusiste en las listas globales */
+    flex-direction: column; /* Alinea los elementos uno debajo del otro */
+    background-color: var(--fondo-contenedor);
+    border: 1px solid var(--fondo-caja);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    /* Eliminamos cualquier alineación centrada que fuerce el contenido al medio */
+    align-items: stretch; 
+    text-align: left; /* Asegura que el texto empiece a la izquierda */
 }
+
+.proyecto-card:hover {
+    transform: scale(1.02);
+}
+
+/* Contenedor de las herramientas */
+.proyecto-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* Las insignias (Badges) */
+.tool-badge {
+    background-color: var(--fondo-caja);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.tool-badge:hover {
+    background-color: white;
+    color: var(--color-tool);
+    border-color: var(--color-tool);
+    box-shadow: 0 2px 8px var(--color-tool);
+}
+
+/* Botón de ver código */
+.btn-proyecto {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #3C5B6F;
+    color: white !important;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+/*------------------------*/
+/*Imagen de proyectos*/
+/*------------------------*/
+
+.proyecto-img-container {
+    width: 100%;
+    height: 250px; /* Puedes bajarlo a 200px si es muy grande */
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Espacio crítico para que el título no se pegue */
+    order: -1; /* Esto asegura que la imagen sea lo PRIMERO arriba */
+}
+
+.proyecto-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción sin estirar */
+    object-position: top; /* Si la imagen es alta, muestra la parte de arriba (donde suele estar el logo/nav del proyecto) */
+}
+
+.proyecto-card:hover .proyecto-img {
+    transform: scale(1.08); /* Efecto de zoom suave */
+}
+
+.proyecto-card h3 {
+    margin: 10px 0; /* 10px arriba y abajo */
+    font-size: 1.5rem;
+    color: var(--color-texto);
+    display: block; /* Ocupa su propia línea */
+}
+
+
 /*-----------------------------------------------------------------------------------------------------------------*/
 
 
