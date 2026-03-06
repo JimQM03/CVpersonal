@@ -71,7 +71,7 @@ const listaProyectos = [
             { nombre: "Render", icono: "fa-solid fa-cloud", color: "#46E3B7" },
             { nombre: "Git", icono: "fa-brands fa-git-alt", color: "#f05032" }
         ],
-        link: "#" 
+        link: "https://jimqm03.github.io/GestionGVisual/" 
     },
     {
         id: "segundoProyecto",
@@ -86,7 +86,7 @@ const listaProyectos = [
             { nombre: "Security", icono: "fa-solid fa-shield-halved", color: "#ff4d4d" },
             { nombre: "MySQL/SQLite", icono: "fa-solid fa-server", color: "#00758f" }
         ],
-        link: "#"
+        link: "https://jimqm03.github.io/StocklyVisual/"
     }
 ];
 
