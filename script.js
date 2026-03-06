@@ -172,21 +172,31 @@ botonTema.addEventListener('click', alternarTema);
 botonIdioma.addEventListener('click', alternarIdioma);
 
 //==================================================================================================
-// 4. FUNCIONES DE PROYECTOS (VERSIÓN CORREGIDA)
+// 4. FUNCIONES DE PROYECTOS (VERSIÓN FINAL CORREGIDA)
 //==================================================================================================
 
 function insertarProyectos() {
     const contenedorEsp = document.getElementById('seccionProyectos');
     const contenedorIng = document.getElementById('seccionProyectosIng');
     
-    // Limpiamos los contenedores por si acaso (evita duplicados)
+    // Limpiamos los contenedores pero mantenemos los títulos
     contenedorEsp.innerHTML = '<h2><center>Mis Proyectos</center></h2>';
     contenedorIng.innerHTML = '<h2><center>My Projects</center></h2>';
 
     listaProyectos.forEach(proy => {
+        // Verificamos que el enlace sea absoluto
+        let enlaceFinal = proy.link;
+        if (!enlaceFinal.startsWith('http')) {
+            console.warn('Enlace no es absoluto, corrigiendo:', enlaceFinal);
+            enlaceFinal = 'https://' + enlaceFinal.replace(/^\/\//, '');
+        }
+        console.log('Usando enlace:', enlaceFinal);
+
         // Crear tarjeta para español
         const cardEsp = document.createElement('div');
         cardEsp.className = "proyecto-card";
+        
+        // Estructura base
         cardEsp.innerHTML = `
             <div class="proyecto-img-container">
                 <img src="${proy.imagen}" alt="${proy.tituloEsp}" class="proyecto-img">
@@ -194,9 +204,6 @@ function insertarProyectos() {
             <h3>${proy.tituloEsp}</h3>
             <p>${proy.descripcionEsp}</p>
             <div class="proyecto-tools"></div>
-            <a href="${proy.link}" target="_blank" rel="noopener noreferrer" class="btn-proyecto">
-                <i class="fa-brands fa-github"></i> Ver Código
-            </a>
         `;
         
         // Crear tarjeta para inglés
@@ -209,13 +216,10 @@ function insertarProyectos() {
             <h3>${proy.tituloIng}</h3>
             <p>${proy.descripcionIng}</p>
             <div class="proyecto-tools"></div>
-            <a href="${proy.link}" target="_blank" rel="noopener noreferrer" class="btn-proyecto">
-                <i class="fa-brands fa-github"></i> View Code
-            </a>
         `;
 
         // Insertar las herramientas en ambas tarjetas
-        [cardEsp, cardIng].forEach((card, index) => {
+        [cardEsp, cardIng].forEach(card => {
             const toolsDiv = card.querySelector('.proyecto-tools');
             proy.tools.forEach(tool => {
                 const span = document.createElement('span');
@@ -226,10 +230,30 @@ function insertarProyectos() {
             });
         });
 
+        // Crear y agregar los botones (esta es la parte clave)
+        const btnEsp = document.createElement('a');
+        btnEsp.href = enlaceFinal;
+        btnEsp.target = "_blank";
+        btnEsp.rel = "noopener noreferrer";
+        btnEsp.className = "btn-proyecto";
+        btnEsp.innerHTML = '<i class="fa-brands fa-github"></i> Ver Código';
+        cardEsp.appendChild(btnEsp);
+
+        const btnIng = document.createElement('a');
+        btnIng.href = enlaceFinal;
+        btnIng.target = "_blank";
+        btnIng.rel = "noopener noreferrer";
+        btnIng.className = "btn-proyecto";
+        btnIng.innerHTML = '<i class="fa-brands fa-github"></i> View Code';
+        cardIng.appendChild(btnIng);
+
         // Agregar las tarjetas a sus respectivos contenedores
         contenedorEsp.appendChild(cardEsp);
         contenedorIng.appendChild(cardIng);
     });
+    
+    console.log('Proyectos insertados correctamente con enlaces:', 
+                listaProyectos.map(p => p.link));
 }
 
 insertarProyectos();
