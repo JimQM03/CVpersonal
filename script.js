@@ -171,39 +171,52 @@ botonTema.addEventListener('click', alternarTema);
 //asignamos funcion de cambiar idioma
 botonIdioma.addEventListener('click', alternarIdioma);
 
-//===================================================================================================
-
-
-
-// 4. fUNCIONES DE PROYECTOS
-
-
-
+//==================================================================================================
+// 4. FUNCIONES DE PROYECTOS (VERSIÓN CORREGIDA)
 //==================================================================================================
 
-function insertarProyectos (){
+function insertarProyectos() {
     const contenedorEsp = document.getElementById('seccionProyectos');
     const contenedorIng = document.getElementById('seccionProyectosIng');
+    
+    // Limpiamos los contenedores por si acaso (evita duplicados)
+    contenedorEsp.innerHTML = '<h2><center>Mis Proyectos</center></h2>';
+    contenedorIng.innerHTML = '<h2><center>My Projects</center></h2>';
 
     listaProyectos.forEach(proy => {
-        //Crear el html para ambos idiomas
-        const crearCard = (esIngles) => {
-            const div = document.createElement('div');
-            div.className = "proyecto-card";
-            div.innerHTML = `
-                <div class="proyecto-img-container">
-                    <img src="${proy.imagen}" alt="Screenshot ${proy.tituloEsp}" class="proyecto-img">
-                </div>
-                <h3>${esIngles ? proy.tituloIng : proy.tituloEsp}</h3>
-                <p>${esIngles ? proy.descripcionIng : proy.descripcionEsp}</p>
-                <div class="proyecto-tools"></div>
-                <a href="${proy.link}" target="_blank" class="btn-proyecto">
-                    <i class="fa-brands fa-github"></i> ${esIngles ? "View Code" : "Ver Código"}
-                </a>
-            `;
+        // Crear tarjeta para español
+        const cardEsp = document.createElement('div');
+        cardEsp.className = "proyecto-card";
+        cardEsp.innerHTML = `
+            <div class="proyecto-img-container">
+                <img src="${proy.imagen}" alt="${proy.tituloEsp}" class="proyecto-img">
+            </div>
+            <h3>${proy.tituloEsp}</h3>
+            <p>${proy.descripcionEsp}</p>
+            <div class="proyecto-tools"></div>
+            <a href="${proy.link}" target="_blank" rel="noopener noreferrer" class="btn-proyecto">
+                <i class="fa-brands fa-github"></i> Ver Código
+            </a>
+        `;
+        
+        // Crear tarjeta para inglés
+        const cardIng = document.createElement('div');
+        cardIng.className = "proyecto-card";
+        cardIng.innerHTML = `
+            <div class="proyecto-img-container">
+                <img src="${proy.imagen}" alt="${proy.tituloIng}" class="proyecto-img">
+            </div>
+            <h3>${proy.tituloIng}</h3>
+            <p>${proy.descripcionIng}</p>
+            <div class="proyecto-tools"></div>
+            <a href="${proy.link}" target="_blank" rel="noopener noreferrer" class="btn-proyecto">
+                <i class="fa-brands fa-github"></i> View Code
+            </a>
+        `;
 
-            //insertamos las skills
-            const toolsDiv = div.querySelector('.proyecto-tools');
+        // Insertar las herramientas en ambas tarjetas
+        [cardEsp, cardIng].forEach((card, index) => {
+            const toolsDiv = card.querySelector('.proyecto-tools');
             proy.tools.forEach(tool => {
                 const span = document.createElement('span');
                 span.className = "tool-badge";
@@ -211,13 +224,12 @@ function insertarProyectos (){
                 span.innerHTML = `<i class="${tool.icono}"></i> ${tool.nombre}`;
                 toolsDiv.appendChild(span);
             });
-            return div;
-        };
+        });
 
-        contenedorEsp.appendChild(crearCard(false));
-        contenedorIng.appendChild(crearCard(true));
+        // Agregar las tarjetas a sus respectivos contenedores
+        contenedorEsp.appendChild(cardEsp);
+        contenedorIng.appendChild(cardIng);
     });
-
 }
 
 insertarProyectos();
