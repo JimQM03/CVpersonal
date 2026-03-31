@@ -71,7 +71,7 @@ const listaProyectos = [
             { nombre: "Render", icono: "fa-solid fa-cloud", color: "#46E3B7" },
             { nombre: "Git", icono: "fa-brands fa-git-alt", color: "#f05032" }
         ],
-        link: "#" 
+        link: "https://jimqm03.github.io/GestionGVisual/" 
     },
     {
         id: "segundoProyecto",
@@ -86,7 +86,7 @@ const listaProyectos = [
             { nombre: "Security", icono: "fa-solid fa-shield-halved", color: "#ff4d4d" },
             { nombre: "MySQL/SQLite", icono: "fa-solid fa-server", color: "#00758f" }
         ],
-        link: "#"
+        link: "https://jimqm03.github.io/StocklyVisual/"
     }
 ];
 
@@ -171,39 +171,56 @@ botonTema.addEventListener('click', alternarTema);
 //asignamos funcion de cambiar idioma
 botonIdioma.addEventListener('click', alternarIdioma);
 
-//===================================================================================================
-
-
-
-// 4. fUNCIONES DE PROYECTOS
-
-
-
+//==================================================================================================
+// 4. FUNCIONES DE PROYECTOS (VERSIÓN FINAL CORREGIDA)
 //==================================================================================================
 
-function insertarProyectos (){
+function insertarProyectos() {
     const contenedorEsp = document.getElementById('seccionProyectos');
     const contenedorIng = document.getElementById('seccionProyectosIng');
+    
+    // Limpiamos los contenedores pero mantenemos los títulos
+    contenedorEsp.innerHTML = '<h2><center>Mis Proyectos</center></h2>';
+    contenedorIng.innerHTML = '<h2><center>My Projects</center></h2>';
 
     listaProyectos.forEach(proy => {
-        //Crear el html para ambos idiomas
-        const crearCard = (esIngles) => {
-            const div = document.createElement('div');
-            div.className = "proyecto-card";
-            div.innerHTML = `
-                <div class="proyecto-img-container">
-                    <img src="${proy.imagen}" alt="Screenshot ${proy.tituloEsp}" class="proyecto-img">
-                </div>
-                <h3>${esIngles ? proy.tituloIng : proy.tituloEsp}</h3>
-                <p>${esIngles ? proy.descripcionIng : proy.descripcionEsp}</p>
-                <div class="proyecto-tools"></div>
-                <a href="${proy.link}" target="_blank" class="btn-proyecto">
-                    <i class="fa-brands fa-github"></i> ${esIngles ? "View Code" : "Ver Código"}
-                </a>
-            `;
+        // Verificamos que el enlace sea absoluto
+        let enlaceFinal = proy.link;
+        if (!enlaceFinal.startsWith('http')) {
+            console.warn('Enlace no es absoluto, corrigiendo:', enlaceFinal);
+            enlaceFinal = 'https://' + enlaceFinal.replace(/^\/\//, '');
+        }
+        console.log('Usando enlace:', enlaceFinal);
 
-            //insertamos las skills
-            const toolsDiv = div.querySelector('.proyecto-tools');
+        // Crear tarjeta para español
+        const cardEsp = document.createElement('div');
+        cardEsp.className = "proyecto-card";
+        
+        // Estructura base
+        cardEsp.innerHTML = `
+            <div class="proyecto-img-container">
+                <img src="${proy.imagen}" alt="${proy.tituloEsp}" class="proyecto-img">
+            </div>
+            <h3>${proy.tituloEsp}</h3>
+            <p>${proy.descripcionEsp}</p>
+            <div class="proyecto-tools"></div>
+        `;
+        
+        // Crear tarjeta para inglés
+        const cardIng = document.createElement('div');
+        cardIng.className = "proyecto-card";
+        cardIng.innerHTML = `
+            <div class="proyecto-img-container">
+                <img src="${proy.imagen}" alt="${proy.tituloIng}" class="proyecto-img">
+            </div>
+            <h3>${proy.tituloIng}</h3>
+            <p>${proy.descripcionIng}</p>
+            <div class="proyecto-tools"></div>
+        `;
+
+        // Insertar las herramientas en ambas tarjetas
+        [cardEsp, cardIng].forEach(card => {
+            const toolsDiv = card.querySelector('.proyecto-tools');
             proy.tools.forEach(tool => {
                 const span = document.createElement('span');
                 span.className = "tool-badge";
@@ -211,13 +228,32 @@ function insertarProyectos (){
                 span.innerHTML = `<i class="${tool.icono}"></i> ${tool.nombre}`;
                 toolsDiv.appendChild(span);
             });
-            return div;
-        };
+        });
 
-        contenedorEsp.appendChild(crearCard(false));
-        contenedorIng.appendChild(crearCard(true));
+        // Crear y agregar los botones (esta es la parte clave)
+        const btnEsp = document.createElement('a');
+        btnEsp.href = enlaceFinal;
+        btnEsp.target = "_blank";
+        btnEsp.rel = "noopener noreferrer";
+        btnEsp.className = "btn-proyecto";
+        btnEsp.innerHTML = '<i class="fa-brands fa-github"></i> Ver Código';
+        cardEsp.appendChild(btnEsp);
+
+        const btnIng = document.createElement('a');
+        btnIng.href = enlaceFinal;
+        btnIng.target = "_blank";
+        btnIng.rel = "noopener noreferrer";
+        btnIng.className = "btn-proyecto";
+        btnIng.innerHTML = '<i class="fa-brands fa-github"></i> View Code';
+        cardIng.appendChild(btnIng);
+
+        // Agregar las tarjetas a sus respectivos contenedores
+        contenedorEsp.appendChild(cardEsp);
+        contenedorIng.appendChild(cardIng);
     });
-
+    
+    console.log('Proyectos insertados correctamente con enlaces:', 
+                listaProyectos.map(p => p.link));
 }
 
 insertarProyectos();
